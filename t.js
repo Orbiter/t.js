@@ -27,7 +27,7 @@
 	}
 
 	function get_value(vars, key) {
-        for (parts = key.split("."); parts.length;) {
+		for (parts = key.split("."); parts.length;) {
 			if (!(parts[0] in vars)) return false;
 			vars = vars[parts.shift()];
 		}
@@ -51,24 +51,24 @@
 					// handle if not
 					if ('!' == meta) return render(inner, vars);
 
-                    if (consp = conregex.exec(key)) {
-                        var l = get_value_con(vars,consp[1]);
-                        var r = get_value_con(vars,consp[3]);
-                        var conV = false;
-                        switch(consp[2].replace(/\s/g,'')) { //do not use the eval(), it is not safe
-                            case '==':  conV = (l == r);  break;
-                            case '===': conV = (l === r); break;
-                            case '>':   conV = (l > r);   break;
-                            case '<':   conV = (l < r);   break;
-                            case '>=':  conV = (l >= r);  break;
-                            case '<=':  conV = (l <= r);  break;
-                            case '!=':  conV = (l != r);  break;
-                        }
-                        if (conV) return render(inner, vars);
-                    }
+					if (consp = conregex.exec(key)) {
+						var l = get_value_con(vars,consp[1]);
+						var r = get_value_con(vars,consp[3]);
+						var conV = false;
+						switch(consp[2].replace(/\s/g,'')) { //do not use the eval(), it is not safe
+							case '==':  conV = (l == r);  break;
+							case '===': conV = (l === r); break;
+							case '>':   conV = (l > r);   break;
+							case '<':   conV = (l < r);   break;
+							case '>=':  conV = (l >= r);  break;
+							case '<=':  conV = (l <= r);  break;
+							case '!=':  conV = (l != r);  break;
+						}
+						if (conV) return render(inner, vars);
+					}
 
 					// check for else
-                    return has_else ? render(if_false, vars) : "";
+					return has_else ? render(if_false, vars) : "";
 				}
 
 				// https://github.com/jasonmoo/t.js/issues/10
