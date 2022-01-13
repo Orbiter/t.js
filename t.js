@@ -60,6 +60,9 @@
 					return "";
 				}
 
+				// https://github.com/jasonmoo/t.js/issues/10
+				if (meta == '!') return "";
+
 				// regular if
 				if (!meta) {
 					return render(if_true, vars);
